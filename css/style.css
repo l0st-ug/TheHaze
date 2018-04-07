@@ -195,10 +195,6 @@ body {
         margin-left: -25px;
     }
 
-    .form-sign-in-with-social {
-        margin-top: 105px;
-    }
-
 }
 
 @media (max-width: 600px) {
@@ -297,3 +293,18 @@ body {
 .form-search input:-ms-input-placeholder {
     color:  #879097;
 }
+
+
+/* main body */
+
+.main-container {
+  background-color: white;
+  max-width: 1200px;
+  width: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+  color:  #4c565e;
+  font-size: 24px;
+  border-bottom: 2px solid #6caee0;
+}
+

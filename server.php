@@ -3,8 +3,7 @@ include('config.php');
 session_start();
 
 if (isset($_SESSION['username'])) {
-    //$_SESSION['msg'] = "You must log in first";
-    header('location: login.php');
+    header('location: dashboard.php');
   }
 
 // variable declaration
@@ -21,16 +20,13 @@ $db = mysqli_connect($servername, $dbusername, $dbpassword, $dbname);
 if (isset($_POST['reg_user'])) {
   echo "reg_user <br>";
   // receive all input values from the form
-  $username = mysqli_real_escape_string($db, $_POST['uname']);
-  $mobile = mysqli_real_escape_string($db, $_POST['mobile']);
-  $password = mysqli_real_escape_string($db, $_POST['pass']);
-  $college = mysqli_real_escape_string($db, $_POST['college']);
+  $username = mysqli_real_escape_string($db, $_POST['username']);
+  $password = mysqli_real_escape_string($db, $_POST['password']);
   $name = mysqli_real_escape_string($db, $_POST['name']);
-  $gender = mysqli_real_escape_string($db, $_POST['gender']);
   $email = mysqli_real_escape_string($db, $_POST['email']);
 
   if (empty($username)) { array_push($errors, "Username is required"); }
-  if (empty($mobile)) { array_push($errors, "Email is required"); }
+  if (empty($email)) { array_push($errors, "Email is required"); }
   if (empty($password)) { array_push($errors, "Password is required"); }
   $query1 = "SELECT * FROM users WHERE username='$username'";
     $results1 = mysqli_query($db, $query1);
@@ -41,12 +37,12 @@ if (isset($_POST['reg_user'])) {
   
   if (count($errors) == 0) {
   	$pass = md5($password);
-  	$query = "INSERT INTO users (username, name, email, college, gender, password, mobile) VALUES('$username', '$name', '$email', '$college', '$gender', '$pass', '$mobile')";
+  	$query = "INSERT INTO users (username, name, email, password) VALUES('$username', '$name', '$email', '$pass')";
   	mysqli_query($db, $query);
   	$_SESSION['username'] = $username;
   	$_SESSION['success'] = "You are now logged in";
-    $query2 = "INSERT INTO events (user) VALUES('$username')";
-    mysqli_query($db, $query2);
+    //$query2 = "INSERT INTO events (user) VALUES('$username')";
+    //mysqli_query($db, $query2);
   	header('location: dashboard.php');
   	echo "<script>window.location = 'dashboard.php';</script>";
   }
@@ -58,8 +54,8 @@ if (isset($_POST['reg_user'])) {
 
 
 if (isset($_POST['login_user'])) {
-  $uname = mysqli_real_escape_string($db, $_POST['uname']);
-  $pass = mysqli_real_escape_string($db, $_POST['pass']);
+  $uname = mysqli_real_escape_string($db, $_POST['username']);
+  $pass = mysqli_real_escape_string($db, $_POST['password']);
 
   if (empty($uname)) {
     array_push($errors, "Username is required");
