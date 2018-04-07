@@ -111,7 +111,7 @@ include('server.php');
 <!-- Footer -->
 <footer class="container-fluid bg-4 text-center">
   Made with <span class="fa fa-heart"></span><br />
-  &copy; 2018 TheHaze. All rights reserved.   Code licensed under <a href="http://opensource.org/licenses/mit-license.html">MIT License</a>
+  &copy; 2018 TheHaze. All rights reserved.   Code licensed under <a href="LICENSE">MIT License</a>
 
 </footer>
 </body>
