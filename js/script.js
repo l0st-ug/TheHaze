@@ -33,3 +33,9 @@ $(document).ready(function(){
     } 
   });  
 });
+
+
+// enable tooltip 
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});

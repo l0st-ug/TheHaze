@@ -1,12 +1,12 @@
 <?php
-include('server.php');
+include('config.php');
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
  
-  <title>TheHaze | Registration</title>
+  <title>TheHaze | Post an Ad</title>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -70,58 +70,59 @@ include('server.php');
 <div class="container-fluid bg-1 text-center" id="banner" style="margin-top: 42px">
   <h3>Registration</h3>
   
-  <form class="form-register" method="post" action="#">
+  <form class="form-register" method="post" enctype="multipart/form-data" action="#">
 
     <div class="form-register-with-email">
 
       <div class="form-white-background">
 
         <div class="form-title-row">
-          <h1>Create an account</h1>
+          <h1>Post Ad</h1>
         </div>
         <?php include('errors.php'); ?>
         <div class="form-row">
           <label>
-            <span>Name</span>
-            <input type="text" name="name" required>
+            <span>Product title</span>
+            <input type="text" name="title" required>
           </label>
         </div>
 
         <div class="form-row">
           <label>
-            <span>Username</span>
-            <input type="text" name="username" required>
+            <span data-toggle="tooltip" title="The approximate price you expect for your item.">Price</span>
+            <input type="number" name="price" required>
           </label>
         </div>
 
         <div class="form-row">
           <label>
-            <span>Email</span>
-            <input type="email" name="email" required onblur="validateEmail(this);">
+            <span>Condition</span>
+            <select name="condition" id="condition">
+                      <option>used</option>
+                      <option>new</option>
+                    </select>
           </label>
         </div>
 
         <div class="form-row">
           <label>
-            <span>Password</span>
-              <input type="password" name="password" required>
-              </label>
-        </div>
-
-        <div class="form-row">
-          <label class="form-checkbox">
-            <input type="checkbox" name="checkbox" checked>
-            <span>I agree to the <a href="#">terms and conditions</a></span>
+            <span>description</span>
+            <input type="textbox" name="description" required>
           </label>
         </div>
 
         <div class="form-row">
-          <button type="submit" name="reg_user">Register</button>
+          <label>
+            <span>A photo of Item</span>
+            <input type="file" name="fileToUpload" id="fileToUpload" required>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <button type="submit" name="post">Post</button>
         </div>
 
       </div>
-
-      <a href="login.php" class="form-log-in-with-existing">Already have an account? Login here &rarr;</a>
 
     </div>
 
@@ -129,25 +130,6 @@ include('server.php');
 </div>
 
 
-<script type="text/javascript">
-        
-        x = document.getElementById("email");
-        function validateEmail(emailField){
-        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-
-        if (reg.test(emailField.value) == false) 
-        {
-            x.setCustomValidity("Invalid email!");
-            return false;
-        }
-        else {
-            x.setCustomValidity('');
-        }
-
-        return true;
-
-}
-</script>
 <!-- Footer -->
 <footer class="container-fluid bg-4 text-center">
   Made with <span class="fa fa-heart"></span><br />

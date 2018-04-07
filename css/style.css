@@ -39,12 +39,12 @@ body {
       padding-bottom: 70px;
   }
   .navbar {
-      padding-top: 15px;
-      padding-bottom: 15px;
+      padding-top: 5px;
+      padding-bottom: 5px;
       border: 0;
       border-radius: 0;
       margin-bottom: 0;
-      font-size: 16px;
+      font-size: 24px !important;
       letter-spacing: 3px;
       height: 70px;
       line-height: 70px;
@@ -52,8 +52,8 @@ body {
         transition: height .5s, line-height .5s;
   }
   .scrolled {
-    height: 40px !important;
-    line-height: 40px !important;
+    height: 50px !important;
+    line-height: 50px !important;
   }
   .navbar-nav  li a:hover {
       color: #1abc9c !important;

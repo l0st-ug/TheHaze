@@ -42,6 +42,7 @@ include('server.php');
             <i class="fa fa-search"></i>
     </form>
     <ul class="navbar-nav">
+      <li class="nav-item bg-primary"><a class="nav-link" href="post.php"  style="color: #fff">POST AD</a></li>
       <?php if (!isset($_SESSION['username'])) { echo '
       <li class="nav-item"><a class="nav-link" href="login.php">LOGIN</a></li>
       <li class="nav-item"><a class="nav-link" href="register.php">REGISTER</a></li>';

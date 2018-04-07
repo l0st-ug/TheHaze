@@ -51,6 +51,7 @@
             <i class="fa fa-search"></i>
     </form>
     <ul class="navbar-nav">
+      <li class="nav-item bg-primary"><a class="nav-link" href="post.php"  style="color: #fff">POST AD</a></li>
       <?php if (!isset($_SESSION['username'])) { echo '
       <li class="nav-item"><a class="nav-link" href="login.php">LOGIN</a></li>
       <li class="nav-item"><a class="nav-link" href="register.php">REGISTER</a></li>';
@@ -113,6 +114,9 @@ if ($image == "unset")
         <div class="card-body">
           <h1 class="card-title"><?php echo $name;?></h4>
           <h3><?php echo '@'.$username;?></h3><br />
+          <h3><?php if($email!='unset') {echo $email; }?><br />
+          <?php if($mobile!='0') { echo $mobile;}?><br />
+          <?php if($room!='unset') {echo 'Room no. '.$room.', '.$hostel;}?></h3><br />
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><span class="fa fa-edit"></span>edit</button>
         </div>
       </div>
