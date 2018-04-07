@@ -1,3 +1,7 @@
+<?php
+include('server.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,20 +42,23 @@
             <i class="fa fa-search"></i>
     </form>
     <ul class="navbar-nav">
+      <?php if (!isset($_SESSION['username'])) { echo '
       <li class="nav-item"><a class="nav-link" href="login.php">LOGIN</a></li>
-      <li class="nav-item active"><a class="nav-link" href="register.php">REGISTER</a></li>
-      
-      <!-- Dropdown -->
+      <li class="nav-item"><a class="nav-link" href="register.php">REGISTER</a></li>';
+      }
+      else { echo '
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
           ACCOUNT
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">PROFILE</a>
+          <a class="dropdown-item" href="dashboard.php">PROFILE</a>
           <a class="dropdown-item" href="#">INTERESTED IN</a>
-          <a class="dropdown-item" href="#">LOGOUT</a>
+          <a class="dropdown-item" href="dashboard.php?logout=1">LOGOUT</a>
         </div>
-      </li>
+      </li>';
+      }
+      ?>
 
       <li class="nav-item"><a class="nav-link" href="#where">ABOUT US</a></li>
     </ul>
@@ -71,25 +78,32 @@
         <div class="form-title-row">
           <h1>Create an account</h1>
         </div>
-
+        <?php include('errors.php'); ?>
         <div class="form-row">
           <label>
             <span>Name</span>
-            <input type="text" name="name">
+            <input type="text" name="name" required>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Username</span>
+            <input type="text" name="username" required>
           </label>
         </div>
 
         <div class="form-row">
           <label>
             <span>Email</span>
-            <input type="email" name="email">
+            <input type="email" name="email" required onblur="validateEmail(this);">
           </label>
         </div>
 
         <div class="form-row">
           <label>
             <span>Password</span>
-              <input type="password" name="password">
+              <input type="password" name="password" required>
               </label>
         </div>
 
@@ -101,7 +115,7 @@
         </div>
 
         <div class="form-row">
-          <button type="submit">Register</button>
+          <button type="submit" name="reg_user">Register</button>
         </div>
 
       </div>
@@ -114,7 +128,25 @@
 </div>
 
 
+<script type="text/javascript">
+        
+        x = document.getElementById("email");
+        function validateEmail(emailField){
+        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
+        if (reg.test(emailField.value) == false) 
+        {
+            x.setCustomValidity("Invalid email!");
+            return false;
+        }
+        else {
+            x.setCustomValidity('');
+        }
+
+        return true;
+
+}
+</script>
 <!-- Footer -->
 <footer class="container-fluid bg-4 text-center">
   Made with <span class="fa fa-heart"></span><br />

@@ -1,3 +1,7 @@
+<?php
+include('config.php');
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,21 +42,23 @@
             <i class="fa fa-search"></i>
     </form>
     <ul class="navbar-nav">
+      <?php if (!isset($_SESSION['username'])) { echo '
       <li class="nav-item"><a class="nav-link" href="login.php">LOGIN</a></li>
-      <li class="nav-item"><a class="nav-link" href="register.php">REGISTER</a></li>
-      
-      <!-- Dropdown -->
+      <li class="nav-item"><a class="nav-link" href="register.php">REGISTER</a></li>';
+      }
+      else { echo '
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
           ACCOUNT
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">PROFILE</a>
+          <a class="dropdown-item" href="dashboard.php">PROFILE</a>
           <a class="dropdown-item" href="#">INTERESTED IN</a>
-          <a class="dropdown-item" href="#">LOGOUT</a>
+          <a class="dropdown-item" href="dashboard.php?logout=1">LOGOUT</a>
         </div>
-      </li>
-
+      </li>';
+      }
+      ?>
       <li class="nav-item"><a class="nav-link" href="#where">ABOUT US</a></li>
     </ul>
   </div>
@@ -63,15 +69,11 @@
   <h3 class="margin display-1">TheHaze</h3>
   <h3>Post classifieds</h3>
   <p>LMFAO you believe this shit's gonna work. well good luck with that (ass).</p>
-</div>
-
-<!-- Second Container -->
-<div class="container-fluid bg-3 text-center" id="what">
-  <h3 class="margin">Top Classifieds</h3>
-  <div class="row">
-    
+  <div class="main-container">
+    Classified Ads
   </div>
-  
+
+
 </div>
 
 

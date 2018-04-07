@@ -4,5 +4,5 @@
 $servername = "localhost";   //Your Mysql Server
 $dbusername = "root";		 // Mysql username 
 $dbpassword = "toor";		 // Mysql Password
-$dbname = "euphoria";		 //Name of Database being used for website
+$dbname = "thehaze";		 //Name of Database being used for website
 ?>
