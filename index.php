@@ -67,8 +67,7 @@ session_start();
 <!-- First Container -->
 <div class="container-fluid bg-1 text-center" id="banner" style="margin-top: 42px">
   <h3 class="margin display-1">TheHaze</h3>
-  <h3>Post classifieds</h3>
-  <p>LMFAO you believe this shit's gonna work. well good luck with that (ass).</p>
+
   <div class="main-container bg-2">
     Classified Ads
     <?php

@@ -44,16 +44,16 @@ body {
       border: 0;
       border-radius: 0;
       margin-bottom: 0;
-      font-size: 20px !important;
+      font-size: 16px !important;
       letter-spacing: 3px;
-      height: 70px;
-      line-height: 70px;
+      height: 50px;
+      line-height: 50px;
         -webkit-transition: height .5s, line-height .5s; /* Safari */
         transition: height .5s, line-height .5s;
   }
   .scrolled {
-    height: 50px !important;
-    line-height: 50px !important;
+    height: 30px !important;
+    line-height: 30px !important;
   }
   .navbar-nav  li a:hover {
       color: #1abc9c !important;
