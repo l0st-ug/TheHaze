@@ -15,7 +15,7 @@
 <html lang="en">
 <head>
  
-  <title>TheHaze | Registration</title>
+  <title>TheHaze | Dashboard</title>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -63,7 +63,7 @@
         </a>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="dashboard.php">PROFILE</a>
-          <a class="dropdown-item" href="#">INTERESTED IN</a>
+          <a class="dropdown-item" data-toggle="modal" data-target="#mModal" href="#">INTERESTED IN</a>
           <a class="dropdown-item" href="dashboard.php?logout=1">LOGOUT</a>
         </div>
       </li>';
@@ -122,7 +122,21 @@ if ($image == "unset")
       </div>
     </div>
     <div class="col-sm-7">
-      
+      <?php
+        $sql = "SELECT title, post_id, price, cond, description, tstamp FROM items WHERE username='$username' ORDER BY tstamp DESC";
+        $result = $conn->query($sql);
+        
+        if ($result->num_rows > 0) {
+          // output data of each row
+          while($row = $result->fetch_assoc()) {
+            echo '<div class="row bg-3 mb-5 mt-5" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"><div class="col-sm-4"><img src="uploads/img/'.$row['post_id'].'.jpg" style="max-width: 100%;"></div>
+                  <div class="col-sm-8"><h1 style="padding-top: 20px;"><a href="view.php?post_id='.$row['post_id'].'">'.$row['title'].'</a></h1><br />'.$row['description'].'
+                  <br /><b style="font-size: 24px;">Price: '.$row['price'].' INR</b><br /></div></div>';
+          }
+        } else {
+          echo "No Ads Posted.";
+        }
+      ?>
     </div>
     </div>
   </div>
@@ -198,6 +212,53 @@ if ($image == "unset")
       </div>
     </div>
   </div>
+
+
+    <!-- The second Modal -->
+  <div class="modal fade" id="mModal">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+      
+        
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="card">
+            <div class="card-body bg-dark">
+              <h1 class="card-title">You were Interested in</h1>
+              <?php 
+                $sql = "SELECT post_id FROM interest WHERE username='$username'";
+                $result = $conn->query($sql);
+        
+                if ($result->num_rows > 0) {
+                  // output data of each row
+                  while($row = $result->fetch_assoc()) {
+                    $squ = "SELECT * FROM items WHERE post_id =".$row['post_id']."";
+                    $reply = $conn->query($squ);
+                    $arr = $reply->fetch_assoc();
+                    echo '<div class="row bg-3 m-5" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"><div class="col-sm-4"><img src="uploads/img/'.$arr['post_id'].'.jpg" style="max-height: 250px;"></div>
+                  <div class="col-sm-8"><h1 class="mb-0" style="padding-top: 20px;"><a href="view.php?post_id='.$arr['post_id'].'">'.$arr['title'].'</a></h1><br /><button class="btn btn-primary" disabled><span class="fa fa-user"></span> '.$arr['username'].'</button><br />'.$arr['description'].'
+                  <br /><b style="font-size: 24px;">Price: '.$arr['price'].' INR</b><br /></div></div>';
+                  }
+                } 
+                else {
+                  echo "Add products to your INTERESTED list.";
+                }
+              ?>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer bg-dark">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
 </div>
 
 

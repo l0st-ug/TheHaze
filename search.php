@@ -6,7 +6,7 @@ session_start();
 <html lang="en">
 <head>
  
-  <title>TheHaze | classifieds</title>
+  <title>TheHaze | Search</title>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,11 +23,11 @@ session_start();
   <script src="js/script.js"></script>
 
 </head>
-<body>
+<body data-spy="scroll" data-target=".navbar" data-offset="20"><!-- the parameters are for smooth scrolling and live updation of links-->
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-light" id="mynav">
-  <a class="navbar-brand" href="#"><img src="logo.png" height="20px" alt="TheHaze"></a>
+  <a class="navbar-brand" href="index.php"><img src="logo.png" height="20px" alt="TheHaze"></a>
 
   <!-- Toggler/collapsibe Button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -66,11 +66,8 @@ session_start();
 
 <!-- First Container -->
 <div class="container-fluid bg-1 text-center" id="banner" style="margin-top: 42px">
-  <h3 class="margin display-1">TheHaze</h3>
-  <h3>Post classifieds</h3>
-  <p>LMFAO you believe this shit's gonna work. well good luck with that (ass).</p>
   <div class="main-container bg-2">
-    Classified Ads
+    Search Results<br />
     <?php
         // Create connection
         $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
@@ -79,7 +76,10 @@ session_start();
         if ($conn->connect_error) {
           die("Connection failed: " . $conn->connect_error);
         }
-        $sql = "SELECT * FROM items ORDER BY tstamp DESC";
+
+        $search = $conn->real_escape_string($_GET['search']);
+
+        $sql = "SELECT * FROM items WHERE title LIKE '%".$search."%' ORDER BY tstamp DESC";
         $result = $conn->query($sql);
         
         if ($result->num_rows > 0) {
@@ -90,7 +90,7 @@ session_start();
                   <br /><b style="font-size: 24px;">Price: '.$row['price'].' INR</b><br /></div></div>';
           }
         } else {
-          echo "No Ads Posted.";
+          echo "Nothing Found.";
         }
       ?>
   </div>

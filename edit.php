@@ -1,7 +1,7 @@
 <html>
 <body>
 <?php
-echo "running";
+
   include('config.php');
   session_start();
   $errors = array(); 
@@ -96,8 +96,6 @@ echo "running";
         } else {
             echo "Error updating record: " . $conn->error;
         }
-
-        $conn->close();
       } 
       else {
         echo "Sorry, there was an error uploading your file.";
